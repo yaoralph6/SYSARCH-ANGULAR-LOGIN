@@ -12,7 +12,7 @@ const slist = [
 ]
 
 app.use(express.static(path.join(__dirname,"/public")));
-app.use(express.urlencoded({"extend":true}));
+app.use(express.urlencoded({"extended":true}));
 app.use(express.json());
 
 app.get("/studentlist",(req,res)=>{
