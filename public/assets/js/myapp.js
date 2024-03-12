@@ -24,12 +24,19 @@ var app = angular.module("myapp",["ngRoute"]);
                 });
 
 				app.controller("mainctrl", function($scope, $http) {
+					$scope.pagesizes = [5, 10, 15, 20];
+					$scope.pageSize = 5;
+					$scope.currentPage = 0;
+
 					$http({
 						'url': '/studentlist',
 						'method': 'GET'
-					})
-					.then(function(response) {
+					}).then(function(response) {
 						$scope.students = response.data;
-						$scope.headers = Object.keys($scope.students[0])
+						$scope.headers = Object.keys($scope.students[0]);
 					});
+
+					$scope.numberOfPages = function() {
+						return Math.ceil($scope.students.length / $scope.pageSize);
+					};
 				});
